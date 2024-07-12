@@ -1,4 +1,4 @@
-<p>Lista de Itens</p>
+<mat-toolbar> Lista de itens </mat-toolbar>
 
 <ng-template #carregando>
   <mat-spinner></mat-spinner>
@@ -21,4 +21,10 @@
       <tr mat-row *matRowDef="let row; columns: colunasTabela"></tr>
     </table>
   </div>
+
+
+    <div class="linha-botoes">
+      <button mat-raised-button color="primary" routerLink="/itens/cadastrar">Cadastrar</button>
+    </div>
+
 </div>
