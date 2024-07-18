@@ -1,1 +1,23 @@
-<p>item-cadastrar-editar works!</p>
+<mat-toolbar>{{(this.item && this.item.id) ? "Editar Item" : "Cadastrar item"}}</mat-toolbar>
+<div class="componente-container">
+  <form
+    class="form-padrao"
+    *ngIf="formGroup"
+    [formGroup]="formGroup"
+    (ngSubmit)="formGroup.valid && salvar()"
+    novalidate
+  >
+    <mat-form-field>
+      <input matInput placeholder="nome" formControlName="nome" required />
+      <mat-error>Campo obrigatório</mat-error>
+    </mat-form-field>
+    <div class="linha-botoes">
+      <button mat-raised-button color="primary" [disabled]="formGroup.valid">
+        Salvar
+      </button>
+      <button type="button" mat-raised-button routerLink="/itens">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

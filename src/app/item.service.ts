@@ -15,4 +15,16 @@ export class ItemService {
   listar(): Observable<Item[]> {
     return this.httpClient.get<Item[]>(`${this.baseUrl}/${this.endpoint}`);
   }
+
+  cadastrar(item: Item): Observable<Item> {
+    return this.httpClient.post<Item>(`${this.baseUrl}/${this.endpoint}`, item);
+  }
+
+  pesquisarPorId(id: string): Observable<Item> {
+    return this.httpClient.get<Item>(`${this.baseUrl}/${this.endpoint}/${id}`);
+  }
+
+  atualizar(item: Item): Observable<Item> {
+    return this.httpClient.delete<Item>(`${this.baseUrl}/${this.endpoint}/${item.id}`);
+  }
 }

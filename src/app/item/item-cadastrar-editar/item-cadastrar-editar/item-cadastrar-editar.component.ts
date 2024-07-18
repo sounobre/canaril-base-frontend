@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Item } from 'src/app/item.model';
+import { ItemService } from 'src/app/item.service';
 
 @Component({
   selector: 'app-item-cadastrar-editar',
@@ -7,6 +11,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemCadastrarEditarComponent implements OnInit {
 
-  formGroup: FormGroup;
+  formGroup!: FormGroup;
+  item!: Item;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private itemService: ItemService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ){}
+
+  ngOnInit() {
+    this.item = this.activatedRoute.snapshot.data["item"];
+    this.formGroup = this.formBuilder.group({
+      id: [(this.item && this.item.id) ? this.item.id : null],
+      nome: [ (this.item && this.item.nome) ? this.item.nome : "", Validators.required],
+
+    });
+  }
+
+  salvar(){
+
+    if(this.item && this.item.id){
+      this.itemService.atualizar(this.formGroup.value).subscribe(
+        itemAtualizado => {
+          this.router.navigateByUrl("/itens");
+        },
+        error => {
+          alert("Erro ao atualizar " + JSON.stringify(error))
+        }
+      );
+
+    } else {
+
+      this.itemService.cadastrar(this.formGroup.value).subscribe(
+        itemCadastrado => {
+          this.router.navigateByUrl("/itens");
+        },
+        error => {
+          alert("Erro ao cadastrar " + JSON.stringify(error))
+        }
+      );
+    }
+
+  }
 
 }

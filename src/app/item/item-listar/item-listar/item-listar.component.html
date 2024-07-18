@@ -8,13 +8,21 @@
   <div *ngIf="itens$ | async as itens; else carregando">
     <table mat-table [dataSource]="itens" class="mat-elevation-z8">
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>No.</th>
-        <td mat-cell *matCellDef="let item">{{ item.id }}</td>
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let item">
+          <a routerLink="/itens/editar/{{ item.id }}">
+            {{ item.id }}
+          </a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let item">{{ item.nome }}</td>
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let item">
+          <a routerLink="/itens/editar/{{ item.id }}">
+            {{ item.nome }}
+          </a>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="colunasTabela"></tr>
@@ -22,9 +30,9 @@
     </table>
   </div>
 
-
-    <div class="linha-botoes">
-      <button mat-raised-button color="primary" routerLink="/itens/cadastrar">Cadastrar</button>
-    </div>
-
+  <div class="linha-botoes">
+    <button mat-raised-button color="primary" routerLink="/itens/cadastrar">
+      Cadastrar
+    </button>
+  </div>
 </div>
