@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: 'itens/editar/:id',
     loadChildren: () => import('./item/item-cadastrar-editar/item-cadastrar-editar.module').then(modulo => modulo.ItemCadastrarEditarModule)
-  }
+  },
 ];
 
 @NgModule({

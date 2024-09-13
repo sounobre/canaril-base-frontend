@@ -1,17 +1,42 @@
-.sidenav-container {
-  height: 100%;
+ .teste {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+ }
+
+.nav-item {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400; /* Ajuste o peso da fonte para não ficar em negrito */
+  color: #000; /* Ajuste a cor conforme necessário */
+  text-transform: none; /* Remova se não quiser texto em maiúsculas */
+  padding: 10px 20px; /* Ajuste o espaçamento conforme necessário */
+  display: flex;
+  align-items: flex-start;
 }
 
-.sidenav {
-  width: 200px;
+.mat-expansion-panel-header {
+padding: 0 48px 0 0;
 }
 
-.sidenav .mat-toolbar {
-  background: inherit;
+.mat-expansion-panel-content
+ {
+  padding: 50;
+ }
+
+ .panelList {
+  margin-top: -3ch;
+ }
+
+ .mat-nav-list a.nav-item:hover {
+  background-color: #f0f0f0; /* Ajuste a cor de fundo ao passar o mouse */
+  color: #000; /* Ajuste a cor do texto ao passar o mouse */
+  width: 500%;
 }
 
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
+.mat-mdc-text-field-wrapper .abc
+ {
+  width: 1ch;
+ }
+
+

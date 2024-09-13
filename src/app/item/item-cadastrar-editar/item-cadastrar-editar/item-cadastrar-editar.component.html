@@ -1,4 +1,6 @@
-<mat-toolbar>{{(this.item && this.item.id) ? "Editar Item" : "Cadastrar item"}}</mat-toolbar>
+<mat-toolbar>{{
+  this.item && this.item.id ? "Editar Item" : "Cadastrar item"
+}}</mat-toolbar>
 <div class="componente-container">
   <form
     class="form-padrao"
@@ -7,13 +9,104 @@
     (ngSubmit)="formGroup.valid && salvar()"
     novalidate
   >
-    <mat-form-field>
-      <input matInput placeholder="nome" formControlName="nome" required />
-      <mat-error>Campo obrigatório</mat-error>
-    </mat-form-field>
+    <div class="teste">
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="name" formControlName="name" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>CPF</mat-label>
+        <input
+          matInput
+          placeholder="document"
+          formControlName="document"
+          mask="000.000.000-00"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Sexo</mat-label>
+        <mat-select formControlName="sex" required>
+          <mat-option value="1">Masculino</mat-option>
+          <mat-option value="2">Feminino</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Data de nascimento</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          placeholder="Data de nascimento"
+          formControlName="dataNascimento"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="teste12" formGroupName="address">
+
+      <mat-form-field>
+        <mat-label>Cep</mat-label>
+        <input matInput formControlName="cep" mask="00.000-000" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Rua</mat-label>
+        <input matInput formControlName="street" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Número</mat-label>
+        <input type="number" matInput formControlName="number" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Complemento</mat-label>
+        <input matInput formControlName="complement" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Bairro</mat-label>
+        <input matInput formControlName="neighborhood" />
+      </mat-form-field>
+
+      <div formGroupName="city">
+        <legend>Cidade</legend>
+
+        <mat-form-field>
+          <mat-label>Cidade</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <div formGroupName="state">
+          <legend>Estado</legend>
+
+          <mat-form-field>
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="id" required>
+              <mat-option *ngFor="let state of states" [value]="state.id">
+                {{ state.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
     <div class="linha-botoes">
-      <button mat-raised-button color="primary" [disabled]="formGroup.valid">
+      <button mat-raised-button color="primary" [disabled]="!formGroup.valid">
         Salvar
+      </button>
+      <button
+        *ngIf="item && item.id"
+        type="button"
+        color="warn"
+        mat-raised-button
+        (click)="deletar()"
+      >
+        Deletar
       </button>
       <button type="button" mat-raised-button routerLink="/itens">
         Cancelar

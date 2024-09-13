@@ -5,8 +5,18 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="">Home</a>
-      <a mat-list-item routerLink="itens">Itens</a>
+      <a mat-list-item routerLink="" class="nav-item">Home</a>
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="nav-item">Cadastros</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <div class="panelList">
+          <a mat-list-item routerLink="itens" class="nav-item">Usuarios</a>
+          <a mat-list-item routerLink="canarios" class="nav-item">Canarios</a>
+        </div>
+        </mat-nav-list>
+      </mat-expansion-panel>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

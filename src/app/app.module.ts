@@ -15,11 +15,18 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatPaginatorIntl } from "@angular/material/paginator";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { HomeComponent } from './home/home.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { RouterModule, Routes }   from '@angular/router';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +40,11 @@ import { HomeComponent } from './home/home.component';
     MatIconModule,
     MatListModule,
     HttpClientModule,
+    BrowserModule,
+    MatMenuModule,
+    RouterModule,
+    MatExpansionModule,
+    MatTooltipModule,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntl }],
   bootstrap: [AppComponent]
